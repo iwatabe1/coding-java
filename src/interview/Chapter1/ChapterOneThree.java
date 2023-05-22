@@ -1,3 +1,5 @@
+package src.interview.Chapter1;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -86,7 +88,7 @@ class FastScanner {
   }
 }
 
-public class Main {
+public class ChapterOneThree {
 
   public static void main(String[] args) {
     try {
