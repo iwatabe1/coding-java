@@ -91,19 +91,50 @@ public class Main {
   public static void main(String[] args) {
     try {
       FastScanner fs = new FastScanner();
-      String ans = "";
 
-      String x = "Temia 295# 29m";
-      ans = replaceBlank(x);
+      String S = fs.next();
+
+      HashMap<String, Integer> mp = new HashMap<>();
+
+      mp.put(S, 0);
+
+      Queue<String> queue = new LinkedList<>();
+      int ans = 0;
+
+      queue.add(S);
+
+      while (!queue.isEmpty()) {
+        String current = queue.poll();
+
+        if (current.equals("atcoder")) {
+          ans = mp.get(current);
+          break;
+        }
+
+        for (int i = 1; i < 7; ++i) {
+          StringBuilder next = new StringBuilder(current);
+
+          char one = next.charAt(i);
+          char two = next.charAt(i - 1);
+
+          next.setCharAt(i, two);
+          next.setCharAt(i - 1, one);
+
+          String nextStr = next.toString();
+
+          if (!mp.containsKey(nextStr)) {
+            queue.add(nextStr);
+            int num = mp.get(current);
+            ++num;
+            mp.put(nextStr, num);
+          }
+        }
+      }
 
       System.out.println(ans);
     } catch (RuntimeException e) {
       e.printStackTrace();
       System.exit(1);
     }
-  }
-
-  static String replaceBlank(String t) {
-    return t.replaceAll(" ", "%20");
   }
 }
